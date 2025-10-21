@@ -57,8 +57,8 @@ playwright-saucedemo-tests/
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-   cd YOUR_REPO
+   git clone https://github.com/manuelsblanco/gitkraken.git
+   cd gitkraken
    ```
 
 2. Install dependencies
@@ -147,9 +147,9 @@ npm run allure:open
 
 After tests run in CI/CD, reports are automatically published to GitHub Pages:
 
-URL Format: `https://YOUR_USERNAME.github.io/YOUR_REPO/reports/BUILD_NUMBER/`
+URL Format: `https://manuelsblanco.github.io/gitkraken/reports/BUILD_NUMBER/`
 
-Latest Report: Check the index page at `https://YOUR_USERNAME.github.io/YOUR_REPO/`
+Latest Report: Check the index page at `https://manuelsblanco.github.io/gitkraken/`
 
 ## CI/CD Pipeline
 
@@ -170,7 +170,7 @@ The workflow automatically:
 3. Branch: gh-pages → / (root)
 4. Click Save
 
-Reports will be available at: `https://YOUR_USERNAME.github.io/YOUR_REPO/`
+Reports will be available at: `https://manuelsblanco.github.io/gitkraken/`
 
 ### Workflow Triggers
 
