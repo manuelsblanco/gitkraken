@@ -80,6 +80,7 @@ jobs:
     - name: Create index page for reports
       if: always()
       run: |
+       CURRENT_DATE=$(date -u +"%B %d, %Y at %H:%M UTC")
         cat > _site/index.html << 'EOF'
         <!DOCTYPE html>
         <html>
@@ -127,10 +128,10 @@ jobs:
             <a href="reports/${{ github.run_number }}/index.html" class="report-link latest">
                 📊 Latest Report - Build #${{ github.run_number }}
             </a>
-            <p><small>Report generated on: $(date)</small></p>
         </body>
         </html>
         EOF
+       sed -i "s|</body>|<p><small>Report generated on: $CURRENT_DATE</small></p></body>|" _site/index.html
 
     - name: Setup Pages
       if: always()
