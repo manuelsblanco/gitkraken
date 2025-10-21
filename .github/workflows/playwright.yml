@@ -70,21 +70,16 @@ jobs:
         path: allure-results/
         retention-days: 30
 
-    - name: Deploy Allure Report to GitHub Pages
+    - name: Create reports directory structure
       if: always()
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: allure-report
-        destination_dir: reports/${{ github.run_number }}
-        keep_files: true
+      run: |
+        mkdir -p _site/reports/${{ github.run_number }}
+        cp -r allure-report/* _site/reports/${{ github.run_number }}/
 
     - name: Create index page for reports
       if: always()
       run: |
-        mkdir -p gh-pages-index
-        cat > gh-pages-index/index.html << 'EOF'
+        cat > _site/index.html << 'EOF'
         <!DOCTYPE html>
         <html>
         <head>
@@ -136,14 +131,20 @@ jobs:
         </html>
         EOF
 
-    - name: Deploy Index Page
+    - name: Setup Pages
       if: always()
-      uses: peaceiris/actions-gh-pages@v3
+      uses: actions/configure-pages@v4
+
+    - name: Upload artifact
+      if: always()
+      uses: actions/upload-pages-artifact@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: gh-pages-index
-        keep_files: true
+        path: '_site'
+
+    - name: Deploy to GitHub Pages
+      if: always()
+      id: deployment
+      uses: actions/deploy-pages@v4
 
     - name: Comment PR with report link
       if: github.event_name == 'pull_request' && always()
