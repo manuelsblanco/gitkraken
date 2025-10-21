@@ -52,6 +52,7 @@ jobs:
     - name: Generate Allure Report
       if: always()
       run: |
+        cp allure-categories.json allure-results/categories.json
         npm run allure:generate
 
     - name: Upload Playwright HTML Report

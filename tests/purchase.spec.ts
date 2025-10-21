@@ -1,5 +1,6 @@
 import { test, expect } from '../fixtures/customFixtures';
 import { testData } from '../fixtures/testData';
+import { allure } from 'allure-playwright';
 
 test.describe('End-to-End Purchase Flow Tests', () => {
   test.beforeEach(async ({ loginPage }) => {
@@ -15,6 +16,13 @@ test.describe('End-to-End Purchase Flow Tests', () => {
     cartPage,
     checkoutPage,
   }) => {
+    allure.epic('Checkout');
+    allure.feature('Complete Purchase Flow');
+    allure.story('End-to-end purchase with multiple items');
+    allure.severity('blocker');
+    allure.tag('smoke');
+    allure.tag('e2e');
+
     await test.step('Add products to cart', async () => {
       await inventoryPage.addProductToCart(testData.products.backpack);
       await inventoryPage.addProductToCart(testData.products.bikeLight);
@@ -70,6 +78,12 @@ test.describe('End-to-End Purchase Flow Tests', () => {
     cartPage,
     checkoutPage,
   }) => {
+    allure.epic('Checkout');
+    allure.feature('Complete Purchase Flow');
+    allure.story('Purchase with single item');
+    allure.severity('critical');
+    allure.tag('regression');
+
     await test.step('Add single product to cart', async () => {
       await inventoryPage.addProductToCart(testData.products.fleeceJacket);
       
@@ -101,6 +115,13 @@ test.describe('End-to-End Purchase Flow Tests', () => {
     cartPage,
     checkoutPage,
   }) => {
+    allure.epic('Checkout');
+    allure.feature('Complete Purchase Flow');
+    allure.story('Purchase with multiple items');
+    allure.severity('critical');
+    allure.tag('regression');
+    allure.tag('e2e');
+
     const productsToAdd = [
       testData.products.backpack,
       testData.products.bikeLight,

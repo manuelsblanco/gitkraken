@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Authentication Failures",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*Authentication.*|.*login.*|.*credentials.*"
+  },
+  {
+    "name": "Shopping Cart Issues",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*cart.*|.*add.*|.*remove.*"
+  },
+  {
+    "name": "Checkout Failures",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*checkout.*|.*purchase.*|.*order.*"
+  },
+  {
+    "name": "UI/UX Issues",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*visible.*|.*display.*|.*badge.*"
+  },
+  {
+    "name": "Test Infrastructure",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*timeout.*|.*network.*|.*connection.*"
+  }
+]

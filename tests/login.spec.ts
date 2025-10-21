@@ -1,5 +1,6 @@
 import { test, expect } from '../fixtures/customFixtures';
 import { testData } from '../fixtures/testData';
+import { allure } from 'allure-playwright';
 
 test.describe('Login Flow Tests', () => {
   test.beforeEach(async ({ loginPage }) => {
@@ -10,6 +11,12 @@ test.describe('Login Flow Tests', () => {
     loginPage, 
     inventoryPage 
   }) => {
+    allure.epic('Authentication');
+    allure.feature('User Login');
+    allure.story('Successful login with valid credentials');
+    allure.severity('blocker');
+    allure.tag('smoke');
+
     await test.step('Login with standard user', async () => {
       await loginPage.login(
         testData.users.standard.username,
@@ -23,6 +30,12 @@ test.describe('Login Flow Tests', () => {
   });
 
   test('should display error message for locked out user', async ({ loginPage }) => {
+    allure.epic('Authentication');
+    allure.feature('User Login');
+    allure.story('Error handling for locked out user');
+    allure.severity('critical');
+    allure.tag('negative-test');
+
     await test.step('Attempt login with locked user', async () => {
       await loginPage.login(
         testData.users.locked.username,
@@ -38,6 +51,12 @@ test.describe('Login Flow Tests', () => {
   });
 
   test('should display error message for invalid credentials', async ({ loginPage }) => {
+    allure.epic('Authentication');
+    allure.feature('User Login');
+    allure.story('Error handling for invalid credentials');
+    allure.severity('critical');
+    allure.tag('negative-test');
+
     await test.step('Attempt login with invalid credentials', async () => {
       await loginPage.login('invalid_user', 'invalid_password');
     });
@@ -50,6 +69,12 @@ test.describe('Login Flow Tests', () => {
   });
 
   test('should display error message when username is missing', async ({ loginPage }) => {
+    allure.epic('Authentication');
+    allure.feature('User Login');
+    allure.story('Form validation - missing username');
+    allure.severity('normal');
+    allure.tag('validation');
+
     await test.step('Attempt login without username', async () => {
       await loginPage.login('', testData.users.standard.password);
     });
@@ -62,6 +87,12 @@ test.describe('Login Flow Tests', () => {
   });
 
   test('should display error message when password is missing', async ({ loginPage }) => {
+    allure.epic('Authentication');
+    allure.feature('User Login');
+    allure.story('Form validation - missing password');
+    allure.severity('normal');
+    allure.tag('validation');
+
     await test.step('Attempt login without password', async () => {
       await loginPage.login(testData.users.standard.username, '');
     });

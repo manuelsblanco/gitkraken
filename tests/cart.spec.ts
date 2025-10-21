@@ -1,5 +1,6 @@
 import { test, expect } from '../fixtures/customFixtures';
 import { testData } from '../fixtures/testData';
+import { allure } from 'allure-playwright';
 
 test.describe('Cart Management Flow Tests', () => {
   test.beforeEach(async ({ loginPage }) => {
@@ -11,6 +12,12 @@ test.describe('Cart Management Flow Tests', () => {
   });
 
   test('should add items to cart successfully', async ({ inventoryPage, cartPage }) => {
+    allure.epic('Shopping Cart');
+    allure.feature('Add Items to Cart');
+    allure.story('Add multiple products to cart');
+    allure.severity('critical');
+    allure.tag('smoke');
+
     await test.step('Add first product to cart', async () => {
       await inventoryPage.addProductToCart(testData.products.backpack);
       
@@ -39,6 +46,12 @@ test.describe('Cart Management Flow Tests', () => {
   });
 
   test('should remove items from cart successfully', async ({ inventoryPage, cartPage }) => {
+    allure.epic('Shopping Cart');
+    allure.feature('Remove Items from Cart');
+    allure.story('Remove products from cart page');
+    allure.severity('critical');
+    allure.tag('regression');
+
     await test.step('Add products to cart', async () => {
       await inventoryPage.addProductToCart(testData.products.backpack);
       await inventoryPage.addProductToCart(testData.products.bikeLight);
@@ -73,6 +86,12 @@ test.describe('Cart Management Flow Tests', () => {
   });
 
   test('should remove items from inventory page', async ({ inventoryPage, cartPage, page }) => {
+    allure.epic('Shopping Cart');
+    allure.feature('Remove Items from Cart');
+    allure.story('Remove products from inventory page');
+    allure.severity('normal');
+    allure.tag('regression');
+
     await test.step('Add multiple products to cart', async () => {
       await inventoryPage.addProductToCart(testData.products.backpack);
       await inventoryPage.addProductToCart(testData.products.bikeLight);
@@ -102,6 +121,12 @@ test.describe('Cart Management Flow Tests', () => {
     inventoryPage, 
     cartPage 
   }) => {
+    allure.epic('Shopping Cart');
+    allure.feature('Cart State Persistence');
+    allure.story('Maintain cart when continuing shopping');
+    allure.severity('normal');
+    allure.tag('regression');
+
     await test.step('Add products to cart', async () => {
       await inventoryPage.addProductToCart(testData.products.backpack);
       await inventoryPage.addProductToCart(testData.products.bikeLight);
@@ -133,6 +158,12 @@ test.describe('Cart Management Flow Tests', () => {
   });
 
   test('should display correct item count in cart badge', async ({ inventoryPage }) => {
+    allure.epic('Shopping Cart');
+    allure.feature('Cart Badge Counter');
+    allure.story('Display correct item count in cart badge');
+    allure.severity('normal');
+    allure.tag('ui');
+
     await test.step('Verify initial cart is empty', async () => {
       const initialCount = await inventoryPage.getCartItemCount();
       expect(initialCount).toBe(0);
